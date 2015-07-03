@@ -10,6 +10,9 @@ namespace Vending_Machine
     {
         static void Main(string[] args)
         {
+            MoneyStorage storage = new MoneyStorage().Pay(128);
+            Console.WriteLine(storage);
+           
         }
     }
 }
