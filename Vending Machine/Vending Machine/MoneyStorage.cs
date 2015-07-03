@@ -38,7 +38,7 @@ namespace Vending_Machine
             return res;
         } 
 
-        public MoneyStorage Pay(int value)
+        public void GiveChange(int value)
         {
             MoneyStorage result = new MoneyStorage();
             for(int i = result.storage.Count-1; i >= 0; i--)
@@ -53,7 +53,21 @@ namespace Vending_Machine
             {
                 throw new NotEnoughMoney();
             }
-            return result;
+            for (int i = 0; i < result.storage.Count; i++)
+            {
+                this.storage[result.storage.ElementAt(i).Key] -= result.storage.ElementAt(i).Value;
+            }
+        }
+
+        public void InsertMoney(int value)
+        {
+            for (int i = this.storage.Count - 1; i >= 0; i--)
+            {
+                KeyValuePair<Coin, int> pair = storage.ElementAt(i);
+                int quantity = value / pair.Key.Value;
+                this.AddCoin(pair.Key, quantity);
+                value -= pair.Key.Value * quantity;
+            }          
         }
 
         public void SumMoneyStorages(MoneyStorage another)
@@ -63,6 +77,8 @@ namespace Vending_Machine
                 this.storage[pair.Key] += pair.Value;
             }
         }
+
+
     }
 
     class NotEnoughMoney:Exception

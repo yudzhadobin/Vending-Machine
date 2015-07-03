@@ -10,9 +10,23 @@ namespace Vending_Machine
     {
         static void Main(string[] args)
         {
-            MoneyStorage storage = new MoneyStorage().Pay(128);
-            Console.WriteLine(storage);
-           
+            Machine vendingMachine = new Machine();
+            vendingMachine.InsertCoins(128);
+            Console.WriteLine(vendingMachine.Bank);
+            Console.WriteLine(vendingMachine.CurrentBalance);
+            Console.WriteLine(vendingMachine.Storage);
+
+            vendingMachine.Buy("Кекс");
+
+            Console.WriteLine(vendingMachine.Bank);
+            Console.WriteLine(vendingMachine.CurrentBalance);
+            Console.WriteLine(vendingMachine.Storage);
+
+            vendingMachine.ReturnChange();
+            Console.WriteLine(vendingMachine.Bank);
+            Console.WriteLine(vendingMachine.CurrentBalance);
+            Console.WriteLine(vendingMachine.Storage);
+
         }
     }
 }

@@ -50,5 +50,10 @@ namespace Vending_Machine
         {
             return this.name.GetHashCode() ;
         }
+
+        public override string ToString()
+        {
+            return name + "\t" + "цена:" + price;
+        }
     }
 }
