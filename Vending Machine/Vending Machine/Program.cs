@@ -12,6 +12,9 @@ namespace Vending_Machine
         static void Main(string[] args)
         {
             Machine vendingMachine = new Machine();
+            vendingMachine.Storage.AddProduct(new Product("Кекс", 50), 4);
+            vendingMachine.Storage.AddProduct(new Product("Печенье", 10), 3);
+            vendingMachine.Storage.AddProduct(new Product("Вафли", 30), 10);
             User user = new User(150);
             ShowMenu(user, vendingMachine);
 
@@ -57,8 +60,7 @@ namespace Vending_Machine
 
             }
             
-    
-
+  
         static void ShowInsertMoneyMenu(User user, Machine vendingMachine)
         {
             Console.Clear();

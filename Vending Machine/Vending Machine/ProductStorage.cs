@@ -12,9 +12,7 @@ namespace Vending_Machine
 
         public ProductStorage()
         {
-            storage.Add(new Product("Кекс", 50), 4);
-            storage.Add(new Product("Печенье", 10), 3);
-            storage.Add(new Product("Вафли", 30), 10);
+           
         }
 
         public int Give(Product product)
@@ -59,6 +57,17 @@ namespace Vending_Machine
                 index++;
             }
             return res;
+        }
+
+        public void AddProduct(Product product, int quantity)
+        {
+            if(this.storage.ContainsKey(product)) {
+                this.storage[product] += quantity;
+            }
+            else
+            {
+                this.storage.Add(product, quantity);
+            }
         }
     }
 
