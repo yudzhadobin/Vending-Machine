@@ -13,41 +13,50 @@ namespace Vending_Machine
         {
             Machine vendingMachine = new Machine();
             User user = new User(150);
-            ShowMenu(user,vendingMachine);
-                    
+            ShowMenu(user, vendingMachine);
+
         }
 
 
-        
+
         static void ShowMenu(User user, Machine vendingMachine)
         {
-            Console.Clear();
-            Console.WriteLine("Ваш текущий баланс:" + vendingMachine.CurrentBalance);
-            Console.WriteLine("Для ввода монет, введите '1'\nДля выбора товара, введите '2'\nДля возврата сдачи, введите '3'\nДля возврата сдачи, и завершения обслуживания, введите '4'");
-            int choise;
-            if ((!int.TryParse(Console.ReadLine(), out choise)) || choise > 4)
+            bool flag = true;
+            do
             {
-                ShowMenu(user,vendingMachine);
+                int choise;
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ваш текущий баланс:" + vendingMachine.CurrentBalance);
+                    Console.WriteLine("Для ввода монет, введите '1'\nДля выбора товара, введите '2'\nДля возврата сдачи, введите '3'\nДля возврата сдачи, и завершения обслуживания, введите '4'");
+                    Console.WriteLine("У вас осталось монет:" + user.Money);
+                } while (!(int.TryParse(Console.ReadLine(), out choise) && choise <= 4 && choise > 0));
+                
+                    switch (choise)
+                    {
+                        case 1:
+                            ShowInsertMoneyMenu(user, vendingMachine);
+
+                            break;
+                        case 2:
+                            ShowChoiseMenu(user, vendingMachine);
+
+                            break;
+                        case 3:
+                            user.GetChange(vendingMachine);
+
+                            break;
+                        case 4:
+                            user.GetChange(vendingMachine);
+                            flag = false;
+                            break;
+                    }
+                } while (flag);
+
             }
-            switch (choise)
-            {
-                case 1:
-                    ShowInsertMoneyMenu(user, vendingMachine);
-                    ShowMenu(user, vendingMachine);
-                    break;
-                case 2:
-                    ShowChoiseMenu(user, vendingMachine);
-                    ShowMenu(user, vendingMachine);
-                    break;
-                case 3:
-                    user.GetChange(vendingMachine);
-                    ShowMenu(user, vendingMachine);
-                    break;
-                case 4:
-                    user.GetChange(vendingMachine);
-                    break;
-            }
-        }
+            
+    
 
         static void ShowInsertMoneyMenu(User user, Machine vendingMachine)
         {
@@ -93,8 +102,8 @@ namespace Vending_Machine
                     res = "Вафли";
                     break;
                 case 4:
-                    ShowMenu(user,vendingMachine);
-                    break;
+                    return;
+                    
             }
             try
             {
@@ -106,7 +115,7 @@ namespace Vending_Machine
                 Console.WriteLine("Для перехода в главное меню, нажмите любую клавишу");
                 Console.ReadKey();
             }
-            ShowMenu(user, vendingMachine);
+            
         }
     }
 
