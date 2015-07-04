@@ -51,7 +51,7 @@ namespace Vending_Machine
             }
             if( value!= 0)
             {
-                throw new NotEnoughMoney();
+                throw new NotEnoughMoneyException();
             }
             for (int i = 0; i < result.storage.Count; i++)
             {
@@ -81,8 +81,11 @@ namespace Vending_Machine
 
     }
 
-    class NotEnoughMoney:Exception
+    class NotEnoughMoneyException:Exception
     {
-
+        public override string ToString()
+        {
+            return "Недостаточно денег. \n";
+        }
     }
 }

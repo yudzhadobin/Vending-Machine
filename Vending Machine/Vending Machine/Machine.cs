@@ -61,7 +61,7 @@ namespace Vending_Machine
             }
             else
             {
-                throw new NotEnoughMoney();
+                throw new NotEnoughMoneyException();
             }
         }
 

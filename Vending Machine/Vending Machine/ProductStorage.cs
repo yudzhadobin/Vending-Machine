@@ -26,7 +26,7 @@ namespace Vending_Machine
             }
             else
             {
-                throw new Exception();
+                throw new NotEnoughProductException();
             }
         }
 
@@ -52,11 +52,23 @@ namespace Vending_Machine
         public override string ToString()
         {
             string res = "";
+            int index = 1;
             foreach(KeyValuePair<Product,int> pair in storage)
             {
-                res += pair.Key.ToString() + "\t" + "кол-во:" + pair.Value + "\n";
+                res += index+":"+ pair.Key.ToString() + "\t" + "кол-во:" + pair.Value + "\n";
+                index++;
             }
             return res;
         }
+    }
+
+
+}
+
+class NotEnoughProductException: Exception
+{
+    public override string ToString()
+    {
+        return "Данного товара нет в наличии. \n";
     }
 }
