@@ -34,7 +34,7 @@ namespace Vending_Machine
             return res;
         } 
 
-        public void GiveChange(int value)
+        public void GiveOddMoney(int value)
         {
             MoneyStorage result = new MoneyStorage();
             for(int i = result.storage.Count-1; i >= 0; i--)

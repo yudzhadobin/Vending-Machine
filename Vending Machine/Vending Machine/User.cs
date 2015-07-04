@@ -33,9 +33,9 @@ namespace Vending_Machine
             this.money -= amount;
         }
 
-        public void GetChange(Machine target)
+        public void ReceiveOddMoney(Machine target)
         {
-            this.money += target.ReturnChange();
+            this.money += target.ReturnOddMoney();
         }
 
         public void Buy(Machine target,string name)

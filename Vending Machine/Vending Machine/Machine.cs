@@ -65,12 +65,17 @@ namespace Vending_Machine
             }
         }
 
-        public int ReturnChange()
+        public int ReturnOddMoney()
         {
             int res = currentBalane;
-            this.Bank.GiveChange(this.currentBalane);
+            this.Bank.GiveOddMoney(this.currentBalane);
             currentBalane = 0;
             return res;
+        }
+
+        public void AddProduct(Product product,int quantity)
+        {
+            this.storage.AddProduct(product,quantity);
         }
     }
 }

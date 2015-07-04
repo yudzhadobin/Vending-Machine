@@ -12,9 +12,9 @@ namespace Vending_Machine
         static void Main(string[] args)
         {
             Machine vendingMachine = new Machine();
-            vendingMachine.Storage.AddProduct(new Product("Кекс", 50), 4);
-            vendingMachine.Storage.AddProduct(new Product("Печенье", 10), 3);
-            vendingMachine.Storage.AddProduct(new Product("Вафли", 30), 10);
+            vendingMachine.AddProduct(new Product("Кекс", 50), 4);
+            vendingMachine.AddProduct(new Product("Печенье", 10), 3);
+            vendingMachine.AddProduct(new Product("Вафли", 30), 10);
             User user = new User(150);
             ShowMenu(user, vendingMachine);
 
@@ -34,31 +34,50 @@ namespace Vending_Machine
                     Console.WriteLine("Ваш текущий баланс:" + vendingMachine.CurrentBalance);
                     Console.WriteLine("Для ввода монет, введите '1'\nДля выбора товара, введите '2'\nДля возврата сдачи, введите '3'\nДля возврата сдачи, и завершения обслуживания, введите '4'");
                     Console.WriteLine("У вас осталось наличных денег:" + user.Money);
-                   
+
                 } while (!(int.TryParse(Console.ReadLine(), out choise) && choise <= 4 && choise > 0));
-                
-                    switch (choise)
-                    {
-                        case 1:
-                            ShowInsertMoneyMenu(user, vendingMachine);
 
-                            break;
-                        case 2:
-                            ShowChoiseMenu(user, vendingMachine);
+                switch (choise)
+                {
+                    case 1:
+                        ShowInsertMoneyMenu(user, vendingMachine);
 
-                            break;
-                        case 3:
-                            user.GetChange(vendingMachine);
+                        break;
+                    case 2:
+                        ShowChoiseMenu(user, vendingMachine);
 
-                            break;
-                        case 4:
-                            user.GetChange(vendingMachine);
-                            flag = false;
-                            break;
-                    }
-                } while (flag);
+                        break;
+                    case 3:
+                        try
+                        {
+                            user.ReceiveOddMoney(vendingMachine);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Для возврата сдачи, недостаточно монет");
+                            Console.WriteLine("Для перехода в главное меню, нажмите любую клавишу");
+                            Console.ReadKey();
 
-            }
+                        }
+                        break;
+                    case 4:
+                        try
+                        {
+                            user.ReceiveOddMoney(vendingMachine);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Для возврата сдачи, недостаточно монет");
+                            Console.WriteLine("Для перехода в главное меню, нажмите любую клавишу");
+                            Console.ReadKey();
+
+                        }
+                        flag = false;
+                        break;
+                }
+            } while (flag);
+
+        }
             
   
         static void ShowInsertMoneyMenu(User user, Machine vendingMachine)
