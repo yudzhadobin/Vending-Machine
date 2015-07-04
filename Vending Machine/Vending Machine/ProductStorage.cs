@@ -55,7 +55,7 @@ namespace Vending_Machine
             int index = 1;
             foreach(KeyValuePair<Product,int> pair in storage)
             {
-                res += index+":"+ pair.Key.ToString() + "\t" + "кол-во:" + pair.Value + "\n";
+                res += index+":\t"+ pair.Key.ToString() + "\t" + "кол-во:" + pair.Value + "\n";
                 index++;
             }
             return res;

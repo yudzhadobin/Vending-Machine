@@ -30,7 +30,8 @@ namespace Vending_Machine
                     Console.Clear();
                     Console.WriteLine("Ваш текущий баланс:" + vendingMachine.CurrentBalance);
                     Console.WriteLine("Для ввода монет, введите '1'\nДля выбора товара, введите '2'\nДля возврата сдачи, введите '3'\nДля возврата сдачи, и завершения обслуживания, введите '4'");
-                    Console.WriteLine("У вас осталось монет:" + user.Money);
+                    Console.WriteLine("У вас осталось наличных денег:" + user.Money);
+                   
                 } while (!(int.TryParse(Console.ReadLine(), out choise) && choise <= 4 && choise > 0));
                 
                     switch (choise)
@@ -65,6 +66,8 @@ namespace Vending_Machine
             int amount;
             if ((!int.TryParse(Console.ReadLine(), out amount)))
             {
+                Console.WriteLine("Введены некоректные данные.\nДля повторения ввода нажмите любую клавишу.\n");
+                Console.ReadKey();
                 ShowInsertMoneyMenu(user, vendingMachine);
             }
             try {
@@ -87,6 +90,8 @@ namespace Vending_Machine
             int choise;
             if ((!int.TryParse(Console.ReadLine(), out choise)) || choise > 4)
             {
+                Console.WriteLine("Введены некоректные данные.\nДля повторения выбора нажмите любую клавишу.\n");
+                Console.ReadKey();
                 ShowChoiseMenu(user,vendingMachine);
             }
             string res= null;

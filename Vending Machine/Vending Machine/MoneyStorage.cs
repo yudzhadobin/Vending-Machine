@@ -18,10 +18,6 @@ namespace Vending_Machine
             storage.Add(new Coin(10), 0);
         }
 
-        public void AddCoin(Coin coin)
-        {
-            this.AddCoin(coin, 1);
-        }
 
         public void AddCoin(Coin coin, int quantity)
         {
@@ -70,14 +66,7 @@ namespace Vending_Machine
             }          
         }
 
-        public void SumMoneyStorages(MoneyStorage another)
-        {
-            foreach(KeyValuePair<Coin, int> pair in another.storage)
-            {
-                this.storage[pair.Key] += pair.Value;
-            }
-        }
-
+  
 
     }
 
